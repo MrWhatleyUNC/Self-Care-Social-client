@@ -41,7 +41,7 @@ export default class RegistrationForm extends Component {
                     <input type="text" id='full-name' name='full-name'></input><br />
                     <label htmlFor="username">Username:</label>
                     <input type="text" id='username' name='username'></input><br />
-                    <label htmlFor="email">E-Mail:</label>
+        <label htmlFor="email">E-Mail:{'  '}</label>
                     <input type="text" id='email' name='email'></input><br />
                     <label htmlFor="password">Password:</label>
                     <input type="text" id='password' name='password'></input><br />

@@ -7,6 +7,7 @@ import NewCommentForm from '../../components/Comments/NewCommentForm'
 import CommentListItem from '../../components/Comments/CommentListItem'
 import PostServices from '../../services/post-api-service'
 import PostContext from '../../context/PostContext'
+import './PostPg.css'
 
 export default class PostPage extends Component {
     static defaultProps = {
@@ -21,7 +22,7 @@ export default class PostPage extends Component {
     }
 
     componentDidMount() {
-        console.log('post page context:',this.context)
+        console.log('post page context:', this.context)
         const { postId } = this.props.match.params
         this.context.clearError()
         PostServices.getPost(postId)
@@ -32,12 +33,12 @@ export default class PostPage extends Component {
             .catch(this.context.setError)
     }
 
-    deleteComment = (comment)=> {
-        console.log('props when trying to delete comment:',this.props)
+    deleteComment = (comment) => {
+        console.log('props when trying to delete comment:', this.props)
         const postId = this.props.match.params.postId
         const userId = parseInt(TokenServices.getUserId())
         this.context.clearError()
-        if(comment.user.id === userId){
+        if (comment.user.id === userId) {
             PostServices.deleteComment(comment.id)
                 .then(PostServices.getPostComments(postId)
                     .then(this.context.setComments)
@@ -45,13 +46,13 @@ export default class PostPage extends Component {
                 )
                 .catch(this.context.setError)
         }
-        else{
+        else {
             alert('You can only delete your own comments')
         }
     }
 
     renderPost() {
-        const post  = this.context.post
+        const post = this.context.post
         return (
             <div className='post'>
                 <p>{post.text}</p>
@@ -61,13 +62,13 @@ export default class PostPage extends Component {
         )
     }
 
-    renderPostComments =() => {
+    renderPostComments = () => {
         const { comments = [] } = this.context
         return comments.map(comment =>
             <CommentListItem
                 key={comment.id}
                 comment={comment}
-                deleteComment= {this.deleteComment}
+                deleteComment={this.deleteComment}
             />
         )
     }
@@ -93,22 +94,22 @@ export default class PostPage extends Component {
                         onClick={this.handleLogoutClick}>
                         <button>Logout</button>
                     </Link>
-                </div>
                     <h3>Post</h3>
                     {error
                         ? <p className='red'>There was an error, try again</p>
                         : this.renderPost()}
-                <div className='comments'>
-                    <h3>Comments</h3>
-                    <ul>
-                        {error
-                            ? <p className='red'>There was an error, try again</p>
-                            : this.renderPostComments()}
-                    </ul>
+                    <div className='comments'>
+                        <h3>Comments</h3>
+                        <ul>
+                            {error
+                                ? <p className='red'>There was an error, try again</p>
+                                : this.renderPostComments()}
+                        </ul>
+                    </div>
+                    <NewCommentForm
+                        postId={this.props.match.params.postId}
+                    />
                 </div>
-                <NewCommentForm
-                    postId={this.props.match.params.postId}
-                />
             </div>
         )
     }

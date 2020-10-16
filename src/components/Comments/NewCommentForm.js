@@ -37,8 +37,12 @@ export default class NewCommentForm extends Component {
                 </div>
                 <fieldset>
                     <legend>New Comment</legend>
-                    <label htmlFor="new_comment">Comment:</label>
-                    <textarea id='new_comment' name= 'new_comment'/>
+                    <label htmlFor="new_comment"/>
+                    <textarea 
+                        id='new_comment' 
+                        name= 'new_comment'
+                        rows='5'
+                        columns='50'/>
                 </fieldset>
                 <div>
                     <input type="submit" value="Add Comment"/>

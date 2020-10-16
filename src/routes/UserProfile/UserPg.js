@@ -31,7 +31,7 @@ export default class UserProfile extends Component {
                 .catch(this.context.setError)
         }
     }
-
+ 
     render() {
         const user = parseInt(TokenServices.getUserId())
         console.log('user pg props on render:',this.props)
@@ -54,9 +54,9 @@ export default class UserProfile extends Component {
                         onClick={this.handleLogoutClick}>
                         <button>Logout</button>
                     </Link>
-                </div>
-                <div className='posts'>
-                    <PostList user={user}/>
+                    <div className='posts'>
+                        <PostList user={user}/>
+                    </div>
                 </div>
             </div>
         )

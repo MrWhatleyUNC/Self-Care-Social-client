@@ -3,6 +3,7 @@ import PostServices from '../../services/post-api-service'
 import TokenServices from '../../services/token-services'
 import PostListContext from '../../context/PostListContext'
 import PostListItem from '../Posts/PostListItem'
+import './PostList.css';
 
 export default class PostList extends Component {
     static defaultProps = {

@@ -1,0 +1,7 @@
+a>button{
+  margin: .33rem;
+  background-color: cornflowerblue;
+  color: white;
+  border-style: groove;
+  font-size: 16px;
+}
