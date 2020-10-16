@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from '../src/components/App/App';
 import * as serviceWorker from './serviceWorker';
+import { CommentListProvider } from './context/CommentListContext'
+import { CommentProvider } from './context/CommentContext'
+import { PostListProvider } from './context/PostListContext'
+import { PostProvider } from './context/PostContext'
+import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <PostListProvider>
+      <PostProvider>
+        <CommentListProvider>
+          <CommentProvider>
+            <App />
+          </CommentProvider>
+        </CommentListProvider>
+      </PostProvider>
+    </PostListProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
